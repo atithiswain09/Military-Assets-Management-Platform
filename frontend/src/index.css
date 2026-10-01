@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #f8fafc;
+    color: #0f172a;
+    line-height: 1.6;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+}
+
+@layer components {
+  /* Table wrapper for horizontal scroll on mobile */
+  .table-wrapper {
+    @apply overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0;
+  }
+
+  /* Focus ring utility */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-navy-500 focus:ring-offset-1;
+  }
+
+  /* Enterprise card styling */
+  .card {
+    @apply bg-white rounded-lg border border-slate-200 shadow-sm transition-colors duration-200;
+  }
+
+  .card-header {
+    @apply px-5 py-4 border-b border-slate-200 transition-colors duration-200;
+  }
+
+  .card-body {
+    @apply px-5 py-4;
+  }
+
+  /* Sidebar link style */
+  .sidebar-link {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-150;
+  }
+
+  .sidebar-link-active {
+    @apply bg-navy-600 text-white;
+  }
+
+  .sidebar-link-inactive {
+    @apply text-slate-300 hover:text-white hover:bg-slate-700;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-in {
+    animation: fadeIn 0.2s ease-out forwards;
+  }
+}
+
+/* Dark Mode Overrides */
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body,
+html.dark .min-h-screen {
+  background-color: #0d1424 !important;
+  color: #f1f5f9 !important;
+}
+
+html.dark .card {
+  background-color: #1a2847 !important;
+  border-color: #273c6b !important;
+  color: #f8fafc !important;
+}
+
+html.dark .card-header {
+  border-color: #273c6b !important;
+}
+
+html.dark .card-header h3 {
+  color: #f8fafc !important;
+}
+
+html.dark h1, html.dark h2, html.dark h3, html.dark h4 {
+  color: #ffffff !important;
+}
+
+html.dark .text-slate-900 {
+  color: #f8fafc !important;
+}
+
+html.dark .text-slate-800 {
+  color: #f1f5f9 !important;
+}
+
+html.dark .text-slate-700 {
+  color: #e2e8f0 !important;
+}
+
+html.dark .text-slate-600 {
+  color: #cbd5e1 !important;
+}
+
+html.dark .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+html.dark .bg-white {
+  background-color: #1a2847 !important;
+}
+
+html.dark .bg-slate-50 {
+  background-color: #0f172a !important;
+}
+
+html.dark .bg-slate-100 {
+  background-color: #1e293b !important;
+}
+
+html.dark .border-slate-200 {
+  border-color: #273c6b !important;
+}
+
+html.dark .border-slate-300 {
+  border-color: #334155 !important;
+}
+
+html.dark input, 
+html.dark select, 
+html.dark textarea {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+html.dark input::placeholder {
+  color: #64748b !important;
+}
+
+html.dark header,
+html.dark nav {
+  background-color: #1a2847 !important;
+  border-color: #273c6b !important;
+}

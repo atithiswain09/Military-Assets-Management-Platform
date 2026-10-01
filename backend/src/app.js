@@ -21,8 +21,16 @@ const app = express();
 
 
 app.use(helmet());
+
+const allowedOrigins = env.corsOrigin ? env.corsOrigin.split(',').map((o) => o.trim()) : ['http://localhost:5173'];
 app.use(cors({
-  origin: env.corsOrigin,
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes('*') || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(null, true);
+    }
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
@@ -49,9 +57,13 @@ if (env.isDev) {
   app.use(morgan('combined'));
 }
 
-// ─── Health check ──────────────────────────────────
+// ─── Health checks ─────────────────────────────────
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok', success: true, message: 'AssetFlow API is running', timestamp: new Date().toISOString() });
+});
+
 app.get('/api/v1/health', (req, res) => {
-  res.json({ success: true, message: 'AssetFlow API is running', timestamp: new Date().toISOString() });
+  res.json({ status: 'ok', success: true, message: 'AssetFlow API is running', timestamp: new Date().toISOString() });
 });
 
 // ─── API v1 routes ─────────────────────────────────
